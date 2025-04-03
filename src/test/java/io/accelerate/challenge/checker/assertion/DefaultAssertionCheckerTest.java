@@ -5,6 +5,9 @@ import io.accelerate.challenge.definition.schema.RoundTestAssertionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -23,6 +26,26 @@ class DefaultAssertionCheckerTest {
         boolean assertionPassed = checker.checkAssertion(
                 new RoundTestAssertion(RoundTestAssertionType.EQUALS, "someValue"), 
                 "someValue");
+
+        assertThat(assertionPassed, is(true));
+    }
+
+    @Test
+    void assertion_equals_lists_positive_test() {
+
+        boolean assertionPassed = checker.checkAssertion(
+                new RoundTestAssertion(RoundTestAssertionType.EQUALS, List.of(1, 2, 3)),
+                List.of(1, 2, 3));
+
+        assertThat(assertionPassed, is(true));
+    }
+
+    @Test
+    void assertion_equals_map_positive_test() {
+
+        boolean assertionPassed = checker.checkAssertion(
+                new RoundTestAssertion(RoundTestAssertionType.EQUALS, Map.of("key1", 1, "key2", 2)),
+                Map.of("key2", 2, "key1", 1));
 
         assertThat(assertionPassed, is(true));
     }
