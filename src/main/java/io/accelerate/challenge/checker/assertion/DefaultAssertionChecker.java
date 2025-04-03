@@ -27,6 +27,11 @@ public class DefaultAssertionChecker implements AssertionChecker {
                 String expectedContainsToLower = ((String) roundTestAssertion.value()).toLowerCase();
                 assertionPassed = responseJsonNode.asText().toLowerCase().contains(expectedContainsToLower);
             }
+            case MULTILINE_STRING_EQUALS -> {
+                String expectedMultilineText = StringUtils.removeEmptyLines(StringUtils.stripTrailingSpaces((String) roundTestAssertion.value()));
+                String actualMultilineText = StringUtils.removeEmptyLines(StringUtils.stripTrailingSpaces(responseJsonNode.asText()));
+                assertionPassed = Objects.equals(expectedMultilineText, actualMultilineText);
+            }
             case IS_NULL -> assertionPassed = responseJsonNode.isNull() == ((Boolean) roundTestAssertion.value());
         }
 

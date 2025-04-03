@@ -99,6 +99,34 @@ class DefaultAssertionCheckerTest {
     }
 
     @Test
+    void assertion_multiline_string_equals_positive_test() {
+        boolean assertionPassed = checker.checkAssertion(
+                new RoundTestAssertion(RoundTestAssertionType.MULTILINE_STRING_EQUALS, 
+                        """
+                        trailing spaces
+                        followed by empty lines
+                        """),
+                """
+                
+                trailing spaces
+                
+                followed by empty lines
+                
+                """);
+
+        assertThat(assertionPassed, is(true));
+    }
+
+    @Test
+    void assertion_multiline_string_equals_negative_test() {
+        boolean assertionPassed = checker.checkAssertion(
+                new RoundTestAssertion(RoundTestAssertionType.MULTILINE_STRING_EQUALS, "one space separator"),
+                "one  space  separator");
+
+        assertThat(assertionPassed, is(false));
+    }
+
+    @Test
     void assertion_is_null_positive_test() {
         boolean assertionPassed = checker.checkAssertion(
                 new RoundTestAssertion(RoundTestAssertionType.IS_NULL, true),
