@@ -33,7 +33,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // Assertions
-    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'org.hamcrest:hamcrest-library:3.0'
 }
 
 test {
