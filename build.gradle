@@ -28,7 +28,7 @@ dependencies {
     implementation 'io.accelerate:chlt-schema-lib:0.3.2' // This references com.fasterxml.jackson.core as well
  
     // Testing framework
-    testImplementation platform('org.junit:junit-bom:5.12.1')
+    testImplementation platform('org.junit:junit-bom:5.12.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
